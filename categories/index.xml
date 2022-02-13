@@ -1,14 +1,1 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Categories on The Long Farewell</title>
-    <link>https://snitxmhm.github.io/categories/</link>
-    <description>Recent content in Categories on The Long Farewell</description>
-    <image>
-      <url>https://snitxmhm.github.io/papermod-cover.png</url>
-      <link>https://snitxmhm.github.io/papermod-cover.png</link>
-    </image>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://snitxmhm.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Categories on The Long Farewell</title><link>https://snitxmhm.github.io/categories/</link><description>Recent content in Categories on The Long Farewell</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 30 Apr 2020 19:43:57 +0800</lastBuildDate><atom:link href="https://snitxmhm.github.io/categories/index.xml" rel="self" type="application/rss+xml"/><item><title>碎碎念</title><link>https://snitxmhm.github.io/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</link><pubDate>Thu, 30 Apr 2020 19:43:57 +0800</pubDate><guid>https://snitxmhm.github.io/categories/%E7%A2%8E%E7%A2%8E%E5%BF%B5/</guid><description/></item><item><title>Linux</title><link>https://snitxmhm.github.io/categories/linux/</link><pubDate>Wed, 29 Apr 2020 20:29:23 +0800</pubDate><guid>https://snitxmhm.github.io/categories/linux/</guid><description/></item><item><title>Security</title><link>https://snitxmhm.github.io/categories/security/</link><pubDate>Wed, 29 Apr 2020 20:29:23 +0800</pubDate><guid>https://snitxmhm.github.io/categories/security/</guid><description/></item><item><title>Technology</title><link>https://snitxmhm.github.io/categories/technology/</link><pubDate>Wed, 29 Apr 2020 20:29:23 +0800</pubDate><guid>https://snitxmhm.github.io/categories/technology/</guid><description/></item></channel></rss>
