@@ -1,0 +1,232 @@
+<!doctype html><html lang=en dir=auto>
+<head><meta charset=utf-8>
+<meta http-equiv=x-ua-compatible content="IE=edge">
+<meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<meta name=robots content="index, follow">
+<title>Linux硬盘自动挂载 | The Long Farewell</title>
+<meta name=keywords content="Linux,磁盘,自动挂载">
+<meta name=description content="前言 Linux下的硬盘分区如果被识别到，就会被分配为一个块设备, 如/dev/sda. 同时为了区分每个分区，会分配给每个分区一个UUID 在使用">
+<meta name=author content="Einsam">
+<link rel=canonical href=https://snitxmhm.github.io/posts/linux%E7%A1%AC%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/>
+<link crossorigin=anonymous href=/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css integrity="sha256-yIlj/i15RiAA/Q+xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as=style>
+<link rel=preload href=/logo.png as=image>
+<script defer crossorigin=anonymous src=/assets/js/highlight.min.7680afc38aa6b15ddf158a4f3780b7b1f7dde7e91d26f073e6229bb7a0793c92.js integrity="sha256-doCvw4qmsV3fFYpPN4C3sffd5+kdJvBz5iKbt6B5PJI=" onload=hljs.initHighlightingOnLoad()></script>
+<link rel=icon href=https://snitxmhm.github.io/img>
+<link rel=icon type=image/png sizes=16x16 href=https://snitxmhm.github.io/favicon-16x16.png>
+<link rel=icon type=image/png sizes=32x32 href=https://snitxmhm.github.io/favicon-32x32.png>
+<link rel=apple-touch-icon href=https://snitxmhm.github.io/apple-touch-icon.png>
+<link rel=mask-icon href=https://snitxmhm.github.io/safari-pinned-tab.svg>
+<meta name=theme-color content="#2e2e33">
+<meta name=msapplication-TileColor content="#2e2e33">
+<meta name=generator content="Hugo 0.91.2">
+<noscript>
+<style>#theme-toggle,.top-link{display:none}</style>
+<style>@media(prefers-color-scheme:dark){:root{--theme:rgb(29, 30, 32);--entry:rgb(46, 46, 51);--primary:rgb(218, 218, 219);--secondary:rgb(155, 156, 157);--tertiary:rgb(65, 66, 68);--content:rgb(196, 196, 197);--hljs-bg:rgb(46, 46, 51);--code-bg:rgb(55, 56, 62);--border:rgb(51, 51, 51)}.list{background:var(--theme)}.list:not(.dark)::-webkit-scrollbar-track{background:0 0}.list:not(.dark)::-webkit-scrollbar-thumb{border-color:var(--theme)}}</style>
+</noscript><meta property="og:title" content="Linux硬盘自动挂载">
+<meta property="og:description" content="前言 Linux下的硬盘分区如果被识别到，就会被分配为一个块设备, 如/dev/sda. 同时为了区分每个分区，会分配给每个分区一个UUID 在使用">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://snitxmhm.github.io/posts/linux%E7%A1%AC%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-05-01T19:18:11+08:00">
+<meta property="article:modified_time" content="2020-05-01T19:18:11+08:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Linux硬盘自动挂载">
+<meta name=twitter:description content="前言 Linux下的硬盘分区如果被识别到，就会被分配为一个块设备, 如/dev/sda. 同时为了区分每个分区，会分配给每个分区一个UUID 在使用">
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Posts","item":"https://snitxmhm.github.io/posts/"},{"@type":"ListItem","position":2,"name":"Linux硬盘自动挂载","item":"https://snitxmhm.github.io/posts/linux%E7%A1%AC%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/"}]}</script>
+<script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Linux硬盘自动挂载","name":"Linux硬盘自动挂载","description":"前言 Linux下的硬盘分区如果被识别到，就会被分配为一个块设备, 如/dev/sda. 同时为了区分每个分区，会分配给每个分区一个UUID 在使用","keywords":["Linux","磁盘","自动挂载"],"articleBody":"前言 Linux下的硬盘分区如果被识别到，就会被分配为一个块设备, 如/dev/sda. 同时为了区分每个分区，会分配给每个分区一个UUID 在使用calibre-web的时候，我想要将书籍单独放置在U盘里,因此开机自动挂载U盘的需求产生了\n一、Linux UUID的作用及其意义 1. 真正的唯一标识符 UUID为系统中存储设备提供的唯一标识字符串。也不管这个设备是什么分区类型。当对设备添加了新的存储设备时,可能会使原先分配的块设备名被改变,而导致系统启动时找不到设备而失败,因此使用UUID可以避免这一麻烦。 2.设备名称并不总是不变的 自动分配的存储设备名称并非总是一致的，它们依赖于启动时内核加载模块的顺序。例如在上一次启动时插入了U盘，而下次启动时又将U盘拔掉，就可能会导致设备名称分配不一致。\n二、Linux UUID的获取方法 1. ls -l /dev/disk/by-uuid/\ntotal 0 lrwxrwxrwx 1 root root 10 May 7 18:08 00bc0f1e-27a0-485a-acd6-af259133f6de - ../../sda9 lrwxrwxrwx 1 root root 10 May 7 18:08 03da0d2b-fc6a-4fc1-9286-37172a93579a - ../../sda6 lrwxrwxrwx 1 root root 10 May 7 18:08 1d7aaf68-93f7-40c7-b7b3-63815dafb8ca - ../../sda4 lrwxrwxrwx 1 root root 10 May 7 18:08 2A21-FC67 - ../../sda1 lrwxrwxrwx 1 root root 10 May 7 18:08 6c904ce8-5282-42d9-836d-8cee31b1de27 - ../../sda7 lrwxrwxrwx 1 root root 10 May 7 18:08 8e216c06-1112-4182-b0ac-c408729b9dad - ../../sda5 lrwxrwxrwx 1 root root 10 May 7 18:08 C2F4-7E4C - ../../sda8 lrwxrwxrwx 1 root root 11 May 7 18:08 CC76-4B3D - ../../sda10 lrwxrwxrwx 1 root root 10 May 7 18:08 FA92210F9220D245 - ../../sda3 这种方法适用于当不知道块设备名称时，信息有些杂乱难以一下子找到自己想要的设备\n2. blkid\n# arch @ hf in ~ [18:33:42] $ sudo blkid [sudo] password for arch: /dev/sda1: UUID=\"2A21-FC67\" BLOCK_SIZE=\"512\" TYPE=\"vfat\" PARTLABEL=\"EFI system partition\" PARTUUID=\"0985f7b4-1b4a-4a2c-af6a-48cbe377794c\" /dev/sda2: PARTLABEL=\"Microsoft reserved partition\" PARTUUID=\"75f28ee8-7fec-4606-aef8-14e22520601b\" /dev/sda3: BLOCK_SIZE=\"512\" UUID=\"FA92210F9220D245\" TYPE=\"ntfs\" PARTLABEL=\"Basic data partition\" PARTUUID=\"102d3440-a960-446b-8cd5-589dbbb67a50\" /dev/sda4: UUID=\"1d7aaf68-93f7-40c7-b7b3-63815dafb8ca\" BLOCK_SIZE=\"4096\" TYPE=\"apfs\" PARTLABEL=\"Basic data partition\" PARTUUID=\"c1117a95-30e9-4c4d-bee2-bc2fb5c1a43e\" /dev/sda5: UUID=\"8e216c06-1112-4182-b0ac-c408729b9dad\" BLOCK_SIZE=\"4096\" TYPE=\"ext4\" PARTUUID=\"04342343-a071-5c41-9b63-4506eaa07c4f\" /dev/sda6: UUID=\"03da0d2b-fc6a-4fc1-9286-37172a93579a\" TYPE=\"swap\" PARTUUID=\"3c6149e9-9680-844d-8495-049ad52bf764\" /dev/sda7: UUID=\"6c904ce8-5282-42d9-836d-8cee31b1de27\" BLOCK_SIZE=\"4096\" TYPE=\"ext4\" PARTUUID=\"eac04f71-243b-2c4e-84aa-6db028be27cc\" /dev/sda8: UUID=\"C2F4-7E4C\" BLOCK_SIZE=\"512\" TYPE=\"vfat\" PARTUUID=\"214b9e68-69de-4a42-bd4f-be7dd18c93dc\" /dev/sda9: UUID=\"00bc0f1e-27a0-485a-acd6-af259133f6de\" BLOCK_SIZE=\"4096\" TYPE=\"ext4\" PARTLABEL=\"Basic data partition\" PARTUUID=\"823ca85a-7b64-4a04-800d-258ecb21c31c\" /dev/sda10: LABEL=\"M-dM-:M-$M-fM-^MM-\\\"M-eM-^HM-^FM-eM-^LM-:\" UUID=\"CC76-4B3D\" BLOCK_SIZE=\"512\" TYPE=\"exfat\" PARTLABEL=\"Basic data partition\" PARTUUID=\"29dca548-39e4-49b3-b498-936e53bf4a65\" 展示了块设备的类型，可能对我们有帮助\n也可以对指定的块设备进行查询\nsudo blkid /dev/sda1 三、自动挂载的问题 当我们需要自动挂载硬盘时,需要注意几个前提事项\n首先需要确认内核是否支持NTFS,exfat文件系统，当然如果文件系统是Linux原生支持的，那么就无需担心了。\n Linux内核目前只支持对微软NTFS文件系统的读取。 NTFS-3G 是微软 NTFS 文件系统的一个开源实现，同时支持读和写。NTFS-3G 开发者使用 FUSE 文件系统来辅助开发，同时对可移植性有益。\n 引自`Arch wiki`  如果需要读写NTFS，我们需要额外的软件进行支持,因为默认只支持读，而无法写入 安装ntfs-3g,ntfs-config\n相较而言,可能exfat文件系统更为合适 安装exfat-utils\n自动挂载 修改/etc/fstab文件\nvim /etc/fstab ------------------------------------------------- #      例如 UUID=CC76-4B3D /mnt/swap exfat defaults 0 0 /etc/fstab 文件包含了如下字段，通过空格或 Tab 分隔：\n       要挂载的分区或存储设备.  的挂载位置。  要挂载设备或是分区的文件系统类型，支持许多种不同的文件系统：ext2, ext3, ext4, reiserfs, xfs, jfs, smbfs, iso9660, vfat, ntfs, swap 及 auto。 设置成auto类型，mount 命令会猜测使用的文件系统类型，对 CDROM 和 DVD 等移动设备是非常有用的。  - 挂载时使用的参数，注意有些 参数是特定文件系统才有的。一些比较常用的参数有 (mount(8))： auto - 在启动时或键入了 mount -a 命令时自动挂载。  noauto - 只在你的命令下被挂载。\nexec - 允许执行此分区的二进制文件。\nnoexec - 不允许执行此文件系统上的二进制文件。\nro - 以只读模式挂载文件系统。\nrw - 以读写模式挂载文件系统。\nuser - 允许任意用户挂载此文件系统，若无显示定义，隐含启用 noexec, nosuid, nodev 参数。\nusers - 允许所有 users 组中的用户挂载文件系统.\nnouser - 只能被 root 挂载。\nowner - 允许设备所有者挂载.\nsync - I/O 同步进行。\nasync - I/O 异步进行。\ndev - 解析文件系统上的块特殊设备。\nnodev - 不解析文件系统上的块特殊设备。\nsuid - 允许 suid 操作和设定 sgid 位。这一参数通常用于一些特殊任务，使一般用户运行程序时临时提升权限。\nnosuid - 禁止 suid 操作和设定 sgid 位。\nnoatime - 不更新文件系统上 inode 访问记录，可以提升性能(参见 atime 参数)。\nnodiratime - 不更新文件系统上的目录 inode 访问记录，可以提升性能(参见 atime 参数)。\nrelatime - 实时更新 inode access 记录。只有在记录中的访问时间早于当前访问才会被更新。（与 noatime 相似，但不会打断如 mutt 或其它程序探测文件在上次访问后是否被修改的进程。），可以提升性能(参见 atime 参数)。\nflush - vfat 的选项，更频繁的刷新数据，复制对话框或进度条在全部数据都写入后才消失。\ndefaults - 使用文件系统的默认挂载参数，例如 ext4 的默认参数为:rw, suid, dev, exec, auto, nouser, async.\n dump 工具通过它决定何时作备份. dump 会检查其内容，并用数字来决定是否对这个文件系统进行备份。 允许的数字是 0 和 1 。0 表示忽略， 1 则进行备份。大部分的用户是没有安装 dump 的 ，对他们而言 应设为 0。 fsck 读取 的数值来决定需要检查的文件系统的检查顺序。允许的数字是0, 1, 和2。 根目录应当获得最高的优先权 1, 其它所有需要被检查的设备设置为 2. 0 表示设备不会被 fsck 所检查。  ","wordCount":"1786","inLanguage":"en","datePublished":"2020-05-01T19:18:11+08:00","dateModified":"2020-05-01T19:18:11+08:00","author":[{"@type":"Person","name":"Einsam"}],"mainEntityOfPage":{"@type":"WebPage","@id":"https://snitxmhm.github.io/posts/linux%E7%A1%AC%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/"},"publisher":{"@type":"Organization","name":"The Long Farewell","logo":{"@type":"ImageObject","url":"https://snitxmhm.github.io/img"}}}</script>
+</head>
+<body id=top>
+<script>localStorage.getItem("pref-theme")==="dark"?document.body.classList.add('dark'):localStorage.getItem("pref-theme")==="light"?document.body.classList.remove('dark'):window.matchMedia('(prefers-color-scheme: dark)').matches&&document.body.classList.add('dark')</script>
+<header class=header>
+<nav class=nav>
+<div class=logo>
+<a href=https://snitxmhm.github.io/ accesskey=h title="Home (Alt + H)">
+<img src=https://snitxmhm.github.io/logo.png alt=logo aria-label=logo height=35>Home</a>
+<span class=logo-switches>
+<button id=theme-toggle accesskey=t title="(Alt + T)"><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</button>
+</span>
+</div>
+<ul id=menu>
+<li>
+<a href=https://snitxmhm.github.io/archives/ title=Archive>
+<span>Archive</span>
+</a>
+</li>
+<li>
+<a href=https://snitxmhm.github.io/tags/ title=Tags>
+<span>Tags</span>
+</a>
+</li>
+<li>
+<a href=https://snitxmhm.github.io/categories/ title=Categories>
+<span>Categories</span>
+</a>
+</li>
+<li>
+<a href=https://snitxmhm.github.io/search/ title="Search (Alt + /)" accesskey=/>
+<span>Search</span>
+</a>
+</li>
+</ul>
+</nav>
+</header>
+<main class=main>
+<article class=post-single>
+<header class=post-header>
+<div class=breadcrumbs><a href=https://snitxmhm.github.io/>Home</a>&nbsp;»&nbsp;<a href=https://snitxmhm.github.io/posts/>Posts</a></div>
+<h1 class=post-title>
+Linux硬盘自动挂载
+</h1>
+<div class=post-meta><span title="2020-05-01 19:18:11 +0800 +0800">May 1, 2020</span>&nbsp;·&nbsp;Einsam
+</div>
+</header> <div class=toc>
+<details open>
+<summary accesskey=c title="(Alt + C)">
+<span class=details>Table of Contents</span>
+</summary>
+<div class=inner><ul>
+<li>
+<a href=#%e5%89%8d%e8%a8%80 aria-label=前言>前言</a></li>
+<li>
+<a href=#%e4%b8%80linux-uuid%e7%9a%84%e4%bd%9c%e7%94%a8%e5%8f%8a%e5%85%b6%e6%84%8f%e4%b9%89 aria-label="一、Linux UUID的作用及其意义">一、Linux UUID的作用及其意义</a></li>
+<li>
+<a href=#%e4%ba%8clinux-uuid%e7%9a%84%e8%8e%b7%e5%8f%96%e6%96%b9%e6%b3%95 aria-label="二、Linux UUID的获取方法">二、Linux UUID的获取方法</a></li>
+<li>
+<a href=#%e4%b8%89%e8%87%aa%e5%8a%a8%e6%8c%82%e8%bd%bd%e7%9a%84%e9%97%ae%e9%a2%98 aria-label=三、自动挂载的问题>三、自动挂载的问题</a><ul>
+<li>
+<a href=#%e8%87%aa%e5%8a%a8%e6%8c%82%e8%bd%bd aria-label=自动挂载>自动挂载</a>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</details>
+</div>
+<div class=post-content><h2 id=前言>前言<a hidden class=anchor aria-hidden=true href=#前言>#</a></h2>
+<p>Linux下的硬盘分区如果被识别到，就会被分配为一个<code>块设备</code>, 如<code>/dev/sda</code>.
+同时为了区分每个分区，会分配给每个分区一个<code>UUID</code>
+在使用<code>calibre-web</code>的时候，我想要将书籍单独放置在U盘里,因此开机自动挂载U盘的需求产生了</p>
+<h2 id=一linux-uuid的作用及其意义>一、Linux UUID的作用及其意义<a hidden class=anchor aria-hidden=true href=#一linux-uuid的作用及其意义>#</a></h2>
+<p><strong>1. 真正的唯一标识符</strong>
+<code>UUID</code>为系统中存储设备提供的唯一标识字符串。也不管这个设备是什么分区类型。当对设备添加了新的存储设备时,可能会使原先分配的块设备名被改变,而导致系统启动时找不到设备而失败,因此使用UUID可以避免这一麻烦。
+<strong>2.设备名称并不总是不变的</strong>
+自动分配的存储设备名称并非总是一致的，它们依赖于启动时内核加载模块的顺序。例如在上一次启动时插入了U盘，而下次启动时又将U盘拔掉，就可能会导致设备名称分配不一致。</p>
+<h2 id=二linux-uuid的获取方法>二、Linux UUID的获取方法<a hidden class=anchor aria-hidden=true href=#二linux-uuid的获取方法>#</a></h2>
+<p><strong>1. <code>ls -l /dev/disk/by-uuid/</code></strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-text data-lang=text>total 0
+lrwxrwxrwx 1 root root 10 May  7 18:08 00bc0f1e-27a0-485a-acd6-af259133f6de -&gt; ../../sda9
+lrwxrwxrwx 1 root root 10 May  7 18:08 03da0d2b-fc6a-4fc1-9286-37172a93579a -&gt; ../../sda6
+lrwxrwxrwx 1 root root 10 May  7 18:08 1d7aaf68-93f7-40c7-b7b3-63815dafb8ca -&gt; ../../sda4
+lrwxrwxrwx 1 root root 10 May  7 18:08 2A21-FC67 -&gt; ../../sda1
+lrwxrwxrwx 1 root root 10 May  7 18:08 6c904ce8-5282-42d9-836d-8cee31b1de27 -&gt; ../../sda7
+lrwxrwxrwx 1 root root 10 May  7 18:08 8e216c06-1112-4182-b0ac-c408729b9dad -&gt; ../../sda5
+lrwxrwxrwx 1 root root 10 May  7 18:08 C2F4-7E4C -&gt; ../../sda8
+lrwxrwxrwx 1 root root 11 May  7 18:08 CC76-4B3D -&gt; ../../sda10
+lrwxrwxrwx 1 root root 10 May  7 18:08 FA92210F9220D245 -&gt; ../../sda3
+</code></pre></div><p>这种方法适用于当不知道块设备名称时，信息有些杂乱难以一下子找到自己想要的设备</p>
+<p><strong>2. <code>blkid</code></strong></p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#75715e># arch @ hf in ~ [18:33:42]</span>
+$ sudo blkid
+<span style=color:#f92672>[</span>sudo<span style=color:#f92672>]</span> password <span style=color:#66d9ef>for</span> arch:
+/dev/sda1: UUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;2A21-FC67&#34;</span> BLOCK_SIZE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;512&#34;</span> TYPE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;vfat&#34;</span> PARTLABEL<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;EFI system partition&#34;</span> PARTUUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;0985f7b4-1b4a-4a2c-af6a-48cbe377794c&#34;</span>
+/dev/sda2: PARTLABEL<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Microsoft reserved partition&#34;</span> PARTUUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;75f28ee8-7fec-4606-aef8-14e22520601b&#34;</span>
+/dev/sda3: BLOCK_SIZE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;512&#34;</span> UUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;FA92210F9220D245&#34;</span> TYPE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;ntfs&#34;</span> PARTLABEL<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Basic data partition&#34;</span> PARTUUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;102d3440-a960-446b-8cd5-589dbbb67a50&#34;</span>
+/dev/sda4: UUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;1d7aaf68-93f7-40c7-b7b3-63815dafb8ca&#34;</span> BLOCK_SIZE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;4096&#34;</span> TYPE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;apfs&#34;</span> PARTLABEL<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Basic data partition&#34;</span> PARTUUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;c1117a95-30e9-4c4d-bee2-bc2fb5c1a43e&#34;</span>
+/dev/sda5: UUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;8e216c06-1112-4182-b0ac-c408729b9dad&#34;</span> BLOCK_SIZE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;4096&#34;</span> TYPE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;ext4&#34;</span> PARTUUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;04342343-a071-5c41-9b63-4506eaa07c4f&#34;</span>
+/dev/sda6: UUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;03da0d2b-fc6a-4fc1-9286-37172a93579a&#34;</span> TYPE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;swap&#34;</span> PARTUUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;3c6149e9-9680-844d-8495-049ad52bf764&#34;</span>
+/dev/sda7: UUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;6c904ce8-5282-42d9-836d-8cee31b1de27&#34;</span> BLOCK_SIZE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;4096&#34;</span> TYPE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;ext4&#34;</span> PARTUUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;eac04f71-243b-2c4e-84aa-6db028be27cc&#34;</span>
+/dev/sda8: UUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;C2F4-7E4C&#34;</span> BLOCK_SIZE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;512&#34;</span> TYPE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;vfat&#34;</span> PARTUUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;214b9e68-69de-4a42-bd4f-be7dd18c93dc&#34;</span>
+/dev/sda9: UUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;00bc0f1e-27a0-485a-acd6-af259133f6de&#34;</span> BLOCK_SIZE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;4096&#34;</span> TYPE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;ext4&#34;</span> PARTLABEL<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Basic data partition&#34;</span> PARTUUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;823ca85a-7b64-4a04-800d-258ecb21c31c&#34;</span>
+/dev/sda10: LABEL<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;M-dM-:M-</span>$M<span style=color:#e6db74>-fM-^MM-\&#34;M-eM-^HM-^FM-eM-^LM-:&#34;</span> UUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;CC76-4B3D&#34;</span> BLOCK_SIZE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;512&#34;</span> TYPE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;exfat&#34;</span> PARTLABEL<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Basic data partition&#34;</span> PARTUUID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;29dca548-39e4-49b3-b498-936e53bf4a65&#34;</span>
+</code></pre></div><p>展示了块设备的类型，可能对我们有帮助</p>
+<p>也可以对指定的块设备进行查询</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>sudo blkid /dev/sda1
+</code></pre></div><h2 id=三自动挂载的问题>三、自动挂载的问题<a hidden class=anchor aria-hidden=true href=#三自动挂载的问题>#</a></h2>
+<p>当我们需要自动挂载硬盘时,需要注意几个前提事项</p>
+<p>首先需要确认内核是否支持<code>NTFS</code>,<code>exfat</code>文件系统，当然如果文件系统是Linux原生支持的，那么就无需担心了。</p>
+<blockquote>
+<p>Linux内核目前只支持对微软NTFS文件系统的读取。 NTFS-3G 是微软 NTFS 文件系统的一个开源实现，同时支持读和写。NTFS-3G 开发者使用 FUSE 文件系统来辅助开发，同时对可移植性有益。</p>
+<pre tabindex=0><code>                                                                          引自`Arch wiki`
+</code></pre></blockquote>
+<p>如果需要读写<code>NTFS</code>，我们需要额外的软件进行支持,因为默认只支持读，而无法写入
+安装<code>ntfs-3g</code>,<code>ntfs-config</code></p>
+<p>相较而言,可能<code>exfat</code>文件系统更为合适
+安装<code>exfat-utils</code></p>
+<h3 id=自动挂载>自动挂载<a hidden class=anchor aria-hidden=true href=#自动挂载>#</a></h3>
+<p>修改<code>/etc/fstab</code>文件</p>
+<div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>vim /etc/fstab
+-------------------------------------------------
+<span style=color:#75715e># &lt;file system&gt; &lt;dir&gt; &lt;type&gt; &lt;options&gt; &lt;dump&gt; &lt;pass&gt;</span>
+例如
+UUID<span style=color:#f92672>=</span>CC76-4B3D /mnt/swap exfat defaults <span style=color:#ae81ff>0</span> <span style=color:#ae81ff>0</span>
+</code></pre></div><p><code>/etc/fstab</code> 文件包含了如下字段，通过空格或 Tab 分隔：</p>
+<pre tabindex=0><code>&lt;file system&gt;    &lt;dir&gt;    &lt;type&gt;    &lt;options&gt;    &lt;dump&gt;    &lt;pass&gt;
+</code></pre><ul>
+<li><strong></strong> 要挂载的分区或存储设备.</li>
+<li><strong></strong> 的挂载位置。</li>
+<li><strong></strong> 要挂载设备或是分区的文件系统类型，支持许多种不同的文件系统：<code>ext2</code>, <code>ext3</code>, <code>ext4</code>, <code>reiserfs</code>, <code>xfs</code>, <code>jfs</code>, <code>smbfs</code>, <code>iso9660</code>, <code>vfat</code>, <code>ntfs</code>, <code>swap</code> 及 <code>auto</code>。 设置成<code>auto</code>类型，mount 命令会猜测使用的文件系统类型，对 CDROM 和 DVD 等移动设备是非常有用的。</li>
+<li><strong></strong> - 挂载时使用的参数，注意有些 参数是特定文件系统才有的。一些比较常用的参数有 (<a href=https://jlk.fjfi.cvut.cz/arch/manpages/man/mount.8>mount(8)</a>)：
+<code>auto</code> - 在启动时或键入了 mount -a 命令时自动挂载。</li>
+</ul>
+<p><code>noauto</code> - 只在你的命令下被挂载。</p>
+<p><code>exec</code> - 允许执行此分区的二进制文件。</p>
+<p><code>noexec</code> - 不允许执行此文件系统上的二进制文件。</p>
+<p><code>ro</code> - 以只读模式挂载文件系统。</p>
+<p><code>rw</code> - 以读写模式挂载文件系统。</p>
+<p><code>user</code> - 允许任意用户挂载此文件系统，若无显示定义，隐含启用 noexec, nosuid, nodev 参数。</p>
+<p><code>users</code> - 允许所有 users 组中的用户挂载文件系统.</p>
+<p><code>nouser</code> - 只能被 root 挂载。</p>
+<p><code>owner</code> - 允许设备所有者挂载.</p>
+<p><code>sync</code> - I/O 同步进行。</p>
+<p><code>async</code> - I/O 异步进行。</p>
+<p><code>dev</code> - 解析文件系统上的块特殊设备。</p>
+<p><code>nodev</code> - 不解析文件系统上的块特殊设备。</p>
+<p><code>suid</code> - 允许 suid 操作和设定 sgid 位。这一参数通常用于一些特殊任务，使一般用户运行程序时临时提升权限。</p>
+<p><code>nosuid</code> - 禁止 suid 操作和设定 sgid 位。</p>
+<p><code>noatime</code> - 不更新文件系统上 inode 访问记录，可以提升性能(参见 atime 参数)。</p>
+<p><code>nodiratime</code> - 不更新文件系统上的目录 inode 访问记录，可以提升性能(参见 atime 参数)。</p>
+<p><code>relatime</code> - 实时更新 inode access 记录。只有在记录中的访问时间早于当前访问才会被更新。（与 noatime 相似，但不会打断如 mutt 或其它程序探测文件在上次访问后是否被修改的进程。），可以提升性能(参见 atime 参数)。</p>
+<p><code>flush</code> - vfat 的选项，更频繁的刷新数据，复制对话框或进度条在全部数据都写入后才消失。</p>
+<p><code>defaults</code> - 使用文件系统的默认挂载参数，例如 ext4 的默认参数为:rw, suid, dev, exec, auto, nouser, async.</p>
+<ul>
+<li><strong>dump</strong> 工具通过它决定何时作备份. dump 会检查其内容，并用数字来决定是否对这个文件系统进行备份。 允许的数字是 0 和 1 。0 表示忽略， 1 则进行备份。大部分的用户是没有安装 dump 的 ，对他们而言 应设为 0。</li>
+<li><strong>fsck</strong> 读取 的数值来决定需要检查的文件系统的检查顺序。允许的数字是0, 1, 和2。 根目录应当获得最高的优先权 1, 其它所有需要被检查的设备设置为 2. 0 表示设备不会被 fsck 所检查。</li>
+</ul>
+</div>
+<footer class=post-footer>
+<ul class=post-tags>
+<li><a href=https://snitxmhm.github.io/tags/linux/>Linux</a></li>
+<li><a href=https://snitxmhm.github.io/tags/%E7%A3%81%E7%9B%98/>磁盘</a></li>
+<li><a href=https://snitxmhm.github.io/tags/%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/>自动挂载</a></li>
+</ul>
+<nav class=paginav>
+<a class=prev href=https://snitxmhm.github.io/posts/arm64%E6%9E%B6%E6%9E%84openwrt-docker%E9%83%A8%E7%BD%B2/>
+<span class=title>« Prev Page</span>
+<br>
+<span>Arm64架构openwrt Docker部署</span>
+</a>
+<a class=next href=https://snitxmhm.github.io/posts/%E8%AE%B0%E7%94%9C%E8%9C%9C%E8%9C%9C/>
+<span class=title>Next Page »</span>
+<br>
+<span>记甜蜜蜜</span>
+</a>
+</nav>
+</footer>
+</article>
+</main>
+<footer class=footer>
+<span>&copy; 2022 <a href=https://snitxmhm.github.io/>The Long Farewell</a></span>
+<span>
+Powered by
+<a href=https://gohugo.io/ rel="noopener noreferrer" target=_blank>Hugo</a> &
+        <a href=https://git.io/hugopapermod rel=noopener target=_blank>PaperMod</a>
+</span>
+</footer>
+<a href=#top aria-label="go to top" title="Go to Top (Alt + G)" class=top-link id=top-link accesskey=g><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentcolor"><path d="M12 6H0l6-6z"/></svg>
+</a>
+<script>let menu=document.getElementById('menu');menu&&(menu.scrollLeft=localStorage.getItem("menu-scroll-position"),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}),document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener("click",function(b){b.preventDefault();var a=this.getAttribute("href").substr(1);window.matchMedia('(prefers-reduced-motion: reduce)').matches?document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(a)}']`).scrollIntoView({behavior:"smooth"}),a==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${a}`)})})</script>
+<script>var mybutton=document.getElementById("top-link");window.onscroll=function(){document.body.scrollTop>800||document.documentElement.scrollTop>800?(mybutton.style.visibility="visible",mybutton.style.opacity="1"):(mybutton.style.visibility="hidden",mybutton.style.opacity="0")}</script>
+<script>document.getElementById("theme-toggle").addEventListener("click",()=>{document.body.className.includes("dark")?(document.body.classList.remove('dark'),localStorage.setItem("pref-theme",'light')):(document.body.classList.add('dark'),localStorage.setItem("pref-theme",'dark'))})</script>
+<script>document.querySelectorAll('pre > code').forEach(b=>{const c=b.parentNode.parentNode,a=document.createElement('button');a.classList.add('copy-code'),a.innerText='copy';function d(){a.innerText='copied!',setTimeout(()=>{a.innerText='copy'},2e3)}a.addEventListener('click',e=>{if('clipboard'in navigator){navigator.clipboard.writeText(b.textContent),d();return}const a=document.createRange();a.selectNodeContents(b);const c=window.getSelection();c.removeAllRanges(),c.addRange(a);try{document.execCommand('copy'),d()}catch(a){}c.removeRange(a)}),c.classList.contains("highlight")?c.appendChild(a):c.parentNode.firstChild==c||(b.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?b.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(a):b.parentNode.appendChild(a))})</script>
+</body>
+</html>
