@@ -1,1 +1,28 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>raspberry on The Long Farewell</title><link>https://zweisamkeiten.github.io/tags/raspberry/</link><description>Recent content in raspberry on The Long Farewell</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 01 May 2020 19:30:00 +0800</lastBuildDate><atom:link href="https://zweisamkeiten.github.io/tags/raspberry/index.xml" rel="self" type="application/rss+xml"/><item><title>Arm64架构openwrt Docker部署</title><link>https://zweisamkeiten.github.io/posts/arm64%E6%9E%B6%E6%9E%84openwrt-docker%E9%83%A8%E7%BD%B2/</link><pubDate>Fri, 01 May 2020 19:30:00 +0800</pubDate><guid>https://zweisamkeiten.github.io/posts/arm64%E6%9E%B6%E6%9E%84openwrt-docker%E9%83%A8%E7%BD%B2/</guid><description>前言: 总想把树莓派闲置的资源给利用起来,给树莓派装上64位系统的起因也是因为原先的openwrt突然出故障,无处寻找原因就只能重新安装。也因</description></item><item><title>树莓派docker环境部署</title><link>https://zweisamkeiten.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BEdocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/</link><pubDate>Wed, 29 Apr 2020 20:07:32 +0800</pubDate><guid>https://zweisamkeiten.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BEdocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/</guid><description>docker安装 官方脚本安装 在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，Raspbian 系统上可以使用这套脚本安装，</description></item><item><title>树莓派docker搭建Calibre Web</title><link>https://zweisamkeiten.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BEdocker%E6%90%AD%E5%BB%BAcalibre-web/</link><pubDate>Wed, 29 Apr 2020 19:54:31 +0800</pubDate><guid>https://zweisamkeiten.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BEdocker%E6%90%AD%E5%BB%BAcalibre-web/</guid><description>前言 之前接触过calibre-web这个项目,确实是一个非常好的管理书籍的项目,同时又不是calibre原软件一成不变的界面风格.最近接触到</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>raspberry on Blowfish</title><link>/tags/raspberry/</link><description>Recent content in raspberry on Blowfish</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 01 May 2020 19:30:00 +0800</lastBuildDate><atom:link href="/tags/raspberry/index.xml" rel="self" type="application/rss+xml"/><item><title>Arm64架构openwrt Docker部署</title><link>/posts/arm64%E6%9E%B6%E6%9E%84openwrt-docker%E9%83%A8%E7%BD%B2/</link><pubDate>Fri, 01 May 2020 19:30:00 +0800</pubDate><guid>/posts/arm64%E6%9E%B6%E6%9E%84openwrt-docker%E9%83%A8%E7%BD%B2/</guid><description>前言: 总想把树莓派闲置的资源给利用起来,给树莓派装上64位系统的起因也是因为原先的openwrt突然出故障,无处寻找原因就只能重新安装。也因此发现了manjaro arm64版本
+docker安装 可看前面的文章
+拉取镜像与配置 1. 打开网卡混杂模式
+sudo ip link set eth0 promisc on 此处的eth0为有线网卡接口名
+2. 创建网络
+（需结合实际网络情况进行修改)
+docker network create -d macvlan --subnet=192.168.1.0/24 --gateway=192.168.1.1 -o parent=eth0 macnet 这条命令需要根据树莓派的实际网络环境进行修改.可以通过ip addr show查看树莓派的ip地址来获得网段范围。 这里一个重要提醒 先对树莓派进行静态ip固定设置
+如树莓派ip为192.168.3.200，那么说明树莓派处在192.168.3.x网段。因此需要将上面的命令中的192.168.1.0与192.168.1.1修改为192.168.3.0和192.168.3.1
+此时可以通过docker network ls命令可以看到网络macnet已经建立成功
+docker network ls NETWORK ID NAME DRIVER SCOPE 12debb06d4ff bridge bridge local 1d95814487a4 host host local 1bd279243d7b macnet macvlan local ea9faa7fb21c none null local 3. 拉取镜像
+由于使用的为arm64架构的系统，所以我们选取的镜像也需要符合
+这里推荐这个buddyfly/openwrt-aarch64 网页控制台的默认密码为password
+docker pull buddyfly/openwrt-aarch64 镜像拉取加速的方法前面文章也有介绍</description></item><item><title>树莓派docker环境部署</title><link>/posts/%E6%A0%91%E8%8E%93%E6%B4%BEdocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/</link><pubDate>Wed, 29 Apr 2020 20:07:32 +0800</pubDate><guid>/posts/%E6%A0%91%E8%8E%93%E6%B4%BEdocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/</guid><description>docker安装 官方脚本安装 在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，Raspbian 系统上可以使用这套脚本安装，另外可以通过 –mirror 选项使用国内源进行安装：
+$ curl -fsSL get.docker.com -o get-docker.sh $ sudo sh get-docker.sh --mirror Aliyun # $ sudo sh get-docker.sh --mirror AzureChinaCloud 这是最为方便的方法
+执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 的稳定(stable)版本安装在系统中。
+apt安装 由于 apt 源使用 HTTPS 以确保软件下载过程中不被篡改。因此，我们首先需要添加使用 HTTPS 传输的软件包以及 CA 证书。
+$ sudo apt-get update $ sudo apt-get install \ apt-transport-https \ ca-certificates \ curl \ gnupg2 \ lsb-release \ software-properties-common 鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。</description></item><item><title>树莓派docker搭建Calibre Web</title><link>/posts/%E6%A0%91%E8%8E%93%E6%B4%BEdocker%E6%90%AD%E5%BB%BAcalibre-web/</link><pubDate>Wed, 29 Apr 2020 19:54:31 +0800</pubDate><guid>/posts/%E6%A0%91%E8%8E%93%E6%B4%BEdocker%E6%90%AD%E5%BB%BAcalibre-web/</guid><description>前言 之前接触过calibre-web这个项目,确实是一个非常好的管理书籍的项目,同时又不是calibre原软件一成不变的界面风格.最近接触到calibre-web有docker的版本,于是想试试将它部署到服务器上
+先是在阿里云试了试水,可是奈何1m的下载小水管,加载书籍的速度没有任何体验.
+后来看到了另一个docker镜像,有arm64的版本,于是想在自己的树莓派上部署一个个人图书馆,方便使用.
+Calibre-web Calibre-web https://github.com/janeczku/calibre-web/ 原项目地址
+其中作者介绍了两个Docker Images
+Technosoft2000 - x64 Docker Hub - https://hub.docker.com/r/technosoft2000/calibre-web/
+Github - https://github.com/Technosoft2000/docker-calibre-web
+Includes the Calibre ebook-convert binary. 包含了书籍格式转换工具
+The “path to convertertool” should be set to /opt/calibre/ebook-convert LinuxServer - x64, armhf, aarch64 Docker Hub - https://hub.docker.com/r/linuxserver/calibre-web/
+Github - https://github.com/linuxserver/docker-calibre-web
+Github - (Optional Calibre layer) - https://github.com/linuxserver/docker-calibre-web/tree/calibre
+This image has the option to pull in an extra docker manifest layer to include the Calibre ebook-convert binary.</description></item></channel></rss>

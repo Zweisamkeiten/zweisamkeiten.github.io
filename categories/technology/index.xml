@@ -1,1 +1,83 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Technology on The Long Farewell</title><link>https://zweisamkeiten.github.io/categories/technology/</link><description>Recent content in Technology on The Long Farewell</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 01 May 2020 19:30:00 +0800</lastBuildDate><atom:link href="https://zweisamkeiten.github.io/categories/technology/index.xml" rel="self" type="application/rss+xml"/><item><title>Arm64架构openwrt Docker部署</title><link>https://zweisamkeiten.github.io/posts/arm64%E6%9E%B6%E6%9E%84openwrt-docker%E9%83%A8%E7%BD%B2/</link><pubDate>Fri, 01 May 2020 19:30:00 +0800</pubDate><guid>https://zweisamkeiten.github.io/posts/arm64%E6%9E%B6%E6%9E%84openwrt-docker%E9%83%A8%E7%BD%B2/</guid><description>前言: 总想把树莓派闲置的资源给利用起来,给树莓派装上64位系统的起因也是因为原先的openwrt突然出故障,无处寻找原因就只能重新安装。也因</description></item><item><title>Linux硬盘自动挂载</title><link>https://zweisamkeiten.github.io/posts/linux%E7%A1%AC%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/</link><pubDate>Fri, 01 May 2020 19:18:11 +0800</pubDate><guid>https://zweisamkeiten.github.io/posts/linux%E7%A1%AC%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/</guid><description>前言 Linux下的硬盘分区如果被识别到，就会被分配为一个块设备, 如/dev/sda. 同时为了区分每个分区，会分配给每个分区一个UUID 在使用</description></item><item><title>关于SSH的安全配置</title><link>https://zweisamkeiten.github.io/posts/%E5%85%B3%E4%BA%8Essh%E7%9A%84%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE/</link><pubDate>Wed, 29 Apr 2020 20:29:23 +0800</pubDate><guid>https://zweisamkeiten.github.io/posts/%E5%85%B3%E4%BA%8Essh%E7%9A%84%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE/</guid><description>前言 最近看到黑客扫描网段获取ip之后暴力破解密码造成信息和经济损失的事,就想到自己的树莓派和服务器也是直接暴露在外网,平时输错密码也是常有的</description></item><item><title>树莓派docker环境部署</title><link>https://zweisamkeiten.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BEdocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/</link><pubDate>Wed, 29 Apr 2020 20:07:32 +0800</pubDate><guid>https://zweisamkeiten.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BEdocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/</guid><description>docker安装 官方脚本安装 在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，Raspbian 系统上可以使用这套脚本安装，</description></item><item><title>树莓派docker搭建Calibre Web</title><link>https://zweisamkeiten.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BEdocker%E6%90%AD%E5%BB%BAcalibre-web/</link><pubDate>Wed, 29 Apr 2020 19:54:31 +0800</pubDate><guid>https://zweisamkeiten.github.io/posts/%E6%A0%91%E8%8E%93%E6%B4%BEdocker%E6%90%AD%E5%BB%BAcalibre-web/</guid><description>前言 之前接触过calibre-web这个项目,确实是一个非常好的管理书籍的项目,同时又不是calibre原软件一成不变的界面风格.最近接触到</description></item><item><title>Arch系linux静态ip设置与固定</title><link>https://zweisamkeiten.github.io/posts/arch%E7%B3%BBlinux%E9%9D%99%E6%80%81ip%E8%AE%BE%E7%BD%AE%E4%B8%8E%E5%9B%BA%E5%AE%9A/</link><pubDate>Mon, 27 Apr 2020 21:52:16 +0800</pubDate><guid>https://zweisamkeiten.github.io/posts/arch%E7%B3%BBlinux%E9%9D%99%E6%80%81ip%E8%AE%BE%E7%BD%AE%E4%B8%8E%E5%9B%BA%E5%AE%9A/</guid><description>在arch系统的安装过程中,我因为个人的网络环境而有设置静态ip的需求，因而没有选用dhcpcd服务来获取动态ip 在此记录设置静态ip过程中</description></item><item><title>一次解决所有代理问题</title><link>https://zweisamkeiten.github.io/posts/%E4%B8%80%E6%AC%A1%E8%A7%A3%E5%86%B3%E6%89%80%E6%9C%89%E4%BB%A3%E7%90%86%E9%97%AE%E9%A2%98/</link><pubDate>Sun, 29 Mar 2020 18:25:08 +0800</pubDate><guid>https://zweisamkeiten.github.io/posts/%E4%B8%80%E6%AC%A1%E8%A7%A3%E5%86%B3%E6%89%80%E6%9C%89%E4%BB%A3%E7%90%86%E9%97%AE%E9%A2%98/</guid><description>Linux 让终端走代理的集中方法 通过让终端走代理的方式来加快gitclone的速度。 前期准备 认识代理的方式：代理是通过客户端与服务端通信，传输服务端</description></item><item><title>Linux下opencv环境搭建</title><link>https://zweisamkeiten.github.io/posts/linux%E4%B8%8Bopencv%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link><pubDate>Thu, 26 Mar 2020 22:12:09 +0800</pubDate><guid>https://zweisamkeiten.github.io/posts/linux%E4%B8%8Bopencv%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid><description>Linux下opencv环境搭建 1. 安装 从 opencv官网 下载源码sources包 选择版本4.2.0 解压 unzip opencv-4.2.0.zip cd opencv-4.2.0 mkdir build cd build 生成cmake编译信息</description></item><item><title>Zsh Oh My Zsh</title><link>https://zweisamkeiten.github.io/posts/zsh-oh-my-zsh/</link><pubDate>Mon, 09 Mar 2020 22:14:33 +0800</pubDate><guid>https://zweisamkeiten.github.io/posts/zsh-oh-my-zsh/</guid><description>https://segmentfault.com/a/1190000013612471 本文以CentOS 7/Mac 为例，介绍zsh的配置使用教程。 准备 查看当前环境shell echo $SHELL 查看系统自带哪些shell cat /etc/shells 安装zsh yum install zsh # CentOS brew install zsh</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Technology on Blowfish</title><link>/categories/technology/</link><description>Recent content in Technology on Blowfish</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Fri, 01 May 2020 19:30:00 +0800</lastBuildDate><atom:link href="/categories/technology/index.xml" rel="self" type="application/rss+xml"/><item><title>Arm64架构openwrt Docker部署</title><link>/posts/arm64%E6%9E%B6%E6%9E%84openwrt-docker%E9%83%A8%E7%BD%B2/</link><pubDate>Fri, 01 May 2020 19:30:00 +0800</pubDate><guid>/posts/arm64%E6%9E%B6%E6%9E%84openwrt-docker%E9%83%A8%E7%BD%B2/</guid><description>前言: 总想把树莓派闲置的资源给利用起来,给树莓派装上64位系统的起因也是因为原先的openwrt突然出故障,无处寻找原因就只能重新安装。也因此发现了manjaro arm64版本
+docker安装 可看前面的文章
+拉取镜像与配置 1. 打开网卡混杂模式
+sudo ip link set eth0 promisc on 此处的eth0为有线网卡接口名
+2. 创建网络
+（需结合实际网络情况进行修改)
+docker network create -d macvlan --subnet=192.168.1.0/24 --gateway=192.168.1.1 -o parent=eth0 macnet 这条命令需要根据树莓派的实际网络环境进行修改.可以通过ip addr show查看树莓派的ip地址来获得网段范围。 这里一个重要提醒 先对树莓派进行静态ip固定设置
+如树莓派ip为192.168.3.200，那么说明树莓派处在192.168.3.x网段。因此需要将上面的命令中的192.168.1.0与192.168.1.1修改为192.168.3.0和192.168.3.1
+此时可以通过docker network ls命令可以看到网络macnet已经建立成功
+docker network ls NETWORK ID NAME DRIVER SCOPE 12debb06d4ff bridge bridge local 1d95814487a4 host host local 1bd279243d7b macnet macvlan local ea9faa7fb21c none null local 3. 拉取镜像
+由于使用的为arm64架构的系统，所以我们选取的镜像也需要符合
+这里推荐这个buddyfly/openwrt-aarch64 网页控制台的默认密码为password
+docker pull buddyfly/openwrt-aarch64 镜像拉取加速的方法前面文章也有介绍</description></item><item><title>Linux硬盘自动挂载</title><link>/posts/linux%E7%A1%AC%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/</link><pubDate>Fri, 01 May 2020 19:18:11 +0800</pubDate><guid>/posts/linux%E7%A1%AC%E7%9B%98%E8%87%AA%E5%8A%A8%E6%8C%82%E8%BD%BD/</guid><description>前言 Linux下的硬盘分区如果被识别到，就会被分配为一个块设备, 如/dev/sda. 同时为了区分每个分区，会分配给每个分区一个UUID 在使用calibre-web的时候，我想要将书籍单独放置在U盘里,因此开机自动挂载U盘的需求产生了
+一、Linux UUID的作用及其意义 1. 真正的唯一标识符 UUID为系统中存储设备提供的唯一标识字符串。也不管这个设备是什么分区类型。当对设备添加了新的存储设备时,可能会使原先分配的块设备名被改变,而导致系统启动时找不到设备而失败,因此使用UUID可以避免这一麻烦。 2.设备名称并不总是不变的 自动分配的存储设备名称并非总是一致的，它们依赖于启动时内核加载模块的顺序。例如在上一次启动时插入了U盘，而下次启动时又将U盘拔掉，就可能会导致设备名称分配不一致。
+二、Linux UUID的获取方法 1. ls -l /dev/disk/by-uuid/
+total 0 lrwxrwxrwx 1 root root 10 May 7 18:08 00bc0f1e-27a0-485a-acd6-af259133f6de -&amp;gt; ../../sda9 lrwxrwxrwx 1 root root 10 May 7 18:08 03da0d2b-fc6a-4fc1-9286-37172a93579a -&amp;gt; ../../sda6 lrwxrwxrwx 1 root root 10 May 7 18:08 1d7aaf68-93f7-40c7-b7b3-63815dafb8ca -&amp;gt; ../../sda4 lrwxrwxrwx 1 root root 10 May 7 18:08 2A21-FC67 -&amp;gt; ../../sda1 lrwxrwxrwx 1 root root 10 May 7 18:08 6c904ce8-5282-42d9-836d-8cee31b1de27 -&amp;gt; .</description></item><item><title>关于SSH的安全配置</title><link>/posts/%E5%85%B3%E4%BA%8Essh%E7%9A%84%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE/</link><pubDate>Wed, 29 Apr 2020 20:29:23 +0800</pubDate><guid>/posts/%E5%85%B3%E4%BA%8Essh%E7%9A%84%E5%AE%89%E5%85%A8%E9%85%8D%E7%BD%AE/</guid><description>前言 最近看到黑客扫描网段获取ip之后暴力破解密码造成信息和经济损失的事,就想到自己的树莓派和服务器也是直接暴露在外网,平时输错密码也是常有的事情,也没对密码进行什么限制.这样想想也是有些后怕,害怕密码被通过穷举破解的方法破解.于是去查询了一些关于SSH的安全设置.
+更改SSH默认端口 大多数恶意扫描都是对默认端口进行扫描 改变默认端口能减少很大的风险
+vim /etc/ssh/sshd_config ----------------------------------- Port 22 # 改为其他端口 关闭ssh密码登录 vim /etc/ssh/sshd_config ----------------------------------- #PasswordAuthentication yes #取消密码认证的注释 将yes改为no 启用RSA公钥验证 vim /etc/ssh/sshd_config ---------------------------------- #PubkeyAuthentication yes #取消注释 #centos 服务器的ssh设置中可能还有 #RSAAuthentication yes #取消注释 AuthorizedKeysFile .ssh/authorized_keys #路径改为生成的连接主机的公钥 禁用空密码账户登录 # 禁止空密码账户登入（默认禁止） PermitEmptyPasswords no 完成更改 更改完成后
+systemctl restart sshd.service #重启ssh服务 如果你的服务器有进行防火墙的配置
+ufw allow 更改端口/tcp #或者
+firewall-cmd --zone=public --add-port=端口/tcp --permanent firewall-cmd --complete-reload #重新载入防火墙配置 另提一句，如果像是阿里云的服务器，还需要在它的安全组中添加开放的端口
+客户端配置 更换了SSH的默认端口后,连接SSH时加上端口参数即可:
+ssh -p 端口 example.com 也可以编辑~/.ssh/config文件,在其中加上Port参数,这样在连接SSH时,可以继续使用更换端口前的命令.
+~/.ssh/config -------------------- Host example.com Port 端口 优点 配置简单,修改单行配置并重启服务即可 有效减少各种针对SSH的扫描 缺点 使连接 SSH 变得略微麻烦； 有些时候，我们需要保持 SSH 监听在 22 端口上，那么这种方法就不适用了。xxxxxxxxxx deploy: type: git repo: server: ssh://username@ip:port/path/to/remote/gityml</description></item><item><title>树莓派docker环境部署</title><link>/posts/%E6%A0%91%E8%8E%93%E6%B4%BEdocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/</link><pubDate>Wed, 29 Apr 2020 20:07:32 +0800</pubDate><guid>/posts/%E6%A0%91%E8%8E%93%E6%B4%BEdocker%E7%8E%AF%E5%A2%83%E9%83%A8%E7%BD%B2/</guid><description>docker安装 官方脚本安装 在测试或开发环境中 Docker 官方为了简化安装流程，提供了一套便捷的安装脚本，Raspbian 系统上可以使用这套脚本安装，另外可以通过 –mirror 选项使用国内源进行安装：
+$ curl -fsSL get.docker.com -o get-docker.sh $ sudo sh get-docker.sh --mirror Aliyun # $ sudo sh get-docker.sh --mirror AzureChinaCloud 这是最为方便的方法
+执行这个命令后，脚本就会自动的将一切准备工作做好，并且把 Docker CE 的稳定(stable)版本安装在系统中。
+apt安装 由于 apt 源使用 HTTPS 以确保软件下载过程中不被篡改。因此，我们首先需要添加使用 HTTPS 传输的软件包以及 CA 证书。
+$ sudo apt-get update $ sudo apt-get install \ apt-transport-https \ ca-certificates \ curl \ gnupg2 \ lsb-release \ software-properties-common 鉴于国内网络问题，强烈建议使用国内源，官方源请在注释中查看。</description></item><item><title>树莓派docker搭建Calibre Web</title><link>/posts/%E6%A0%91%E8%8E%93%E6%B4%BEdocker%E6%90%AD%E5%BB%BAcalibre-web/</link><pubDate>Wed, 29 Apr 2020 19:54:31 +0800</pubDate><guid>/posts/%E6%A0%91%E8%8E%93%E6%B4%BEdocker%E6%90%AD%E5%BB%BAcalibre-web/</guid><description>前言 之前接触过calibre-web这个项目,确实是一个非常好的管理书籍的项目,同时又不是calibre原软件一成不变的界面风格.最近接触到calibre-web有docker的版本,于是想试试将它部署到服务器上
+先是在阿里云试了试水,可是奈何1m的下载小水管,加载书籍的速度没有任何体验.
+后来看到了另一个docker镜像,有arm64的版本,于是想在自己的树莓派上部署一个个人图书馆,方便使用.
+Calibre-web Calibre-web https://github.com/janeczku/calibre-web/ 原项目地址
+其中作者介绍了两个Docker Images
+Technosoft2000 - x64 Docker Hub - https://hub.docker.com/r/technosoft2000/calibre-web/
+Github - https://github.com/Technosoft2000/docker-calibre-web
+Includes the Calibre ebook-convert binary. 包含了书籍格式转换工具
+The “path to convertertool” should be set to /opt/calibre/ebook-convert LinuxServer - x64, armhf, aarch64 Docker Hub - https://hub.docker.com/r/linuxserver/calibre-web/
+Github - https://github.com/linuxserver/docker-calibre-web
+Github - (Optional Calibre layer) - https://github.com/linuxserver/docker-calibre-web/tree/calibre
+This image has the option to pull in an extra docker manifest layer to include the Calibre ebook-convert binary.</description></item><item><title>Arch系linux静态ip设置与固定</title><link>/posts/arch%E7%B3%BBlinux%E9%9D%99%E6%80%81ip%E8%AE%BE%E7%BD%AE%E4%B8%8E%E5%9B%BA%E5%AE%9A/</link><pubDate>Mon, 27 Apr 2020 21:52:16 +0800</pubDate><guid>/posts/arch%E7%B3%BBlinux%E9%9D%99%E6%80%81ip%E8%AE%BE%E7%BD%AE%E4%B8%8E%E5%9B%BA%E5%AE%9A/</guid><description>在arch系统的安装过程中,我因为个人的网络环境而有设置静态ip的需求，因而没有选用dhcpcd服务来获取动态ip
+在此记录设置静态ip过程中的思路与一些工具的使用，还有永久固定静态ip的方法
+前置知识 排查网络连接问题 1. 网络接口网卡设备可见且已经启用 1. ip link 2. ip link set 网卡名 up 2. 已经连接到网络. 网线已经接好 或者已经连接到无线局域网 3. 网络接口设备拥有一个ip地址 4. 路由表设置正确 6. 可以ping通一个本地ip地址 例如默认网关 7. 可以ping通一个公网ip地址 例如8.8.8.8 谷歌的DNS服务器 8. 检查是否能解析域名 例如baidu.com Ping ping用于测试是否可以连接到某个主机
+$ ping www.example.com PING www.example.com (93.184.216.34): 56(84) data bytes 64 bytes from 93.184.216.34: icmp_seq=0 ttl=56 time=11.632 ms 64 bytes from 93.184.216.34: icmp_seq=1 ttl=56 time=11.726 ms 64 bytes from 93.184.216.34: icmp_seq=2 ttl=56 time=10.683 ms .</description></item><item><title>一次解决所有代理问题</title><link>/posts/%E4%B8%80%E6%AC%A1%E8%A7%A3%E5%86%B3%E6%89%80%E6%9C%89%E4%BB%A3%E7%90%86%E9%97%AE%E9%A2%98/</link><pubDate>Sun, 29 Mar 2020 18:25:08 +0800</pubDate><guid>/posts/%E4%B8%80%E6%AC%A1%E8%A7%A3%E5%86%B3%E6%89%80%E6%9C%89%E4%BB%A3%E7%90%86%E9%97%AE%E9%A2%98/</guid><description>Linux 让终端走代理的集中方法 通过让终端走代理的方式来加快gitclone的速度。
+前期准备 认识代理的方式：代理是通过客户端与服务端通信，传输服务端能够访问到的资源文件，再由服务端客户端通信返回给客户端，从而间接访问服务端能够访问的资源
+首先确定自己服务端代理的通讯协议。 socks，http，https
+方法一: 直接在终端中运行:
+export http_proxy=http://proxyAddress:port 这里的proxyAddress替换为代理服务器的ip，如果客户端支持本地监听就替换为127.0.0.1
+port端口替换为代理端口
+Examples: export http_proxy=http://127.0.0.1:1080 export https_proxy=http://127.0.0.1:1080 export http_proxy=socks5://127.0.0.1:1080 这种方法的好处是只对当前打开的终端生效，当终端关闭代理就取消了
+方法二: 如果有永久保存代理服务器的需求
+把代理服务器地址写进shell配置文件 .bashrc或者.zshrc
+export http_proxy=&amp;#34;http://localhost:port&amp;#34; export https_proxy=&amp;#34;http://localhost:prot&amp;#34; 可将冒号内的http替换为socks5
+或者干脆
+export ALL_PROXY=socks5://127.0.0.1:1080 最后执行命令使之生效
+source ~/.bashrc 方法三: Proxychains软件解决 Arch安装
+sudo pacman -S proxychains 安装完成后编辑/etc/proxychains.conf 注释掉proxy_dns这行，防止DNS污染
+在文件最末添加
+socks5 127.0.0.1 1080 以后每次需要执行需要代理的命令时，就在命令前添加proxychains
+方法四： 修改对应工具的代理配置
+例如git
+git config --global http.proxy 'socks://127.0.0.1:1080' git config --global https.proxy 'socks5:127.0.0.1:1080' 取消代理
+git config --global --unset http.</description></item><item><title>Linux下opencv环境搭建</title><link>/posts/linux%E4%B8%8Bopencv%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link><pubDate>Thu, 26 Mar 2020 22:12:09 +0800</pubDate><guid>/posts/linux%E4%B8%8Bopencv%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid><description>Linux下opencv环境搭建 1. 安装 从
+opencv官网
+下载源码sources包
+选择版本4.2.0
+解压
+unzip opencv-4.2.0.zip cd opencv-4.2.0 mkdir build cd build 生成cmake编译信息
+cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local .. 解释一下各个参数
+CMAKE_BUILD_TYPE=Release\Debug 分为发布和调试两种
+CMAKE_INSTALL_PREFIX 是安装位置
+.. 为从上级文件夹获取
+编译
+make -j7 #使用7核心进行编译 安装
+sudo make install 2. 配置 在
+/etc/ld.so.conf.d/ 文件夹下新建一个opencv4.conf, 里边
+写入
+/usr/local/lib cd /etc/ld.so.conf.d/ sudo touch opencv4.conf #3.4.9版本就新建opencv3.conf sudo sh -c &amp;#39;echo &amp;#34;/usr/local/lib&amp;#34; &amp;gt; opencv4.</description></item><item><title>Zsh Oh My Zsh</title><link>/posts/zsh-oh-my-zsh/</link><pubDate>Mon, 09 Mar 2020 22:14:33 +0800</pubDate><guid>/posts/zsh-oh-my-zsh/</guid><description>https://segmentfault.com/a/1190000013612471
+本文以CentOS 7/Mac 为例，介绍zsh的配置使用教程。
+准备 查看当前环境shell echo $SHELL 查看系统自带哪些shell cat /etc/shells 安装zsh yum install zsh # CentOS brew install zsh # mac安装 将zsh设置为默认shell chsh -s /bin/zsh # CentOS # Mac如下 # 在 /etc/shells 文件中加入如下一行 /usr/local/bin/zsh # 接着运行 chsh -s /usr/local/bin/zsh 可以通过echo $SHELL查看当前默认的shell，如果没有改为/bin/zsh，那么需要重启shell。
+oh-my-zsh 配置zsh是一件麻烦的事儿，爱折腾的程序猿怎么可能忍受？！于是，oh-my-zsh出现了，有了这个东东，zsh配置起来就方便多了！
+安装oh-my-zsh 有若干安装方式，介绍三种： 1.自动安装
+wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh 2.手动安装
+git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc 3.真-手动安装
+在oh-my-zsh的github主页，手动将zip包下载下来。 将zip包解压，拷贝至~/.oh-my-zsh目录。此处省略拷贝的操作步骤。 执行cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc 三选一即可，适合各种环境下的安装，然后需要source ~/.</description></item></channel></rss>

@@ -1,1 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>opencv on The Long Farewell</title><link>https://zweisamkeiten.github.io/categories/opencv/</link><description>Recent content in opencv on The Long Farewell</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 26 Mar 2020 22:12:09 +0800</lastBuildDate><atom:link href="https://zweisamkeiten.github.io/categories/opencv/index.xml" rel="self" type="application/rss+xml"/><item><title>Linux下opencv环境搭建</title><link>https://zweisamkeiten.github.io/posts/linux%E4%B8%8Bopencv%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link><pubDate>Thu, 26 Mar 2020 22:12:09 +0800</pubDate><guid>https://zweisamkeiten.github.io/posts/linux%E4%B8%8Bopencv%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid><description>Linux下opencv环境搭建 1. 安装 从 opencv官网 下载源码sources包 选择版本4.2.0 解压 unzip opencv-4.2.0.zip cd opencv-4.2.0 mkdir build cd build 生成cmake编译信息</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>opencv on Blowfish</title><link>/categories/opencv/</link><description>Recent content in opencv on Blowfish</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 26 Mar 2020 22:12:09 +0800</lastBuildDate><atom:link href="/categories/opencv/index.xml" rel="self" type="application/rss+xml"/><item><title>Linux下opencv环境搭建</title><link>/posts/linux%E4%B8%8Bopencv%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</link><pubDate>Thu, 26 Mar 2020 22:12:09 +0800</pubDate><guid>/posts/linux%E4%B8%8Bopencv%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</guid><description>Linux下opencv环境搭建 1. 安装 从
+opencv官网
+下载源码sources包
+选择版本4.2.0
+解压
+unzip opencv-4.2.0.zip cd opencv-4.2.0 mkdir build cd build 生成cmake编译信息
+cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/usr/local .. 解释一下各个参数
+CMAKE_BUILD_TYPE=Release\Debug 分为发布和调试两种
+CMAKE_INSTALL_PREFIX 是安装位置
+.. 为从上级文件夹获取
+编译
+make -j7 #使用7核心进行编译 安装
+sudo make install 2. 配置 在
+/etc/ld.so.conf.d/ 文件夹下新建一个opencv4.conf, 里边
+写入
+/usr/local/lib cd /etc/ld.so.conf.d/ sudo touch opencv4.conf #3.4.9版本就新建opencv3.conf sudo sh -c &amp;#39;echo &amp;#34;/usr/local/lib&amp;#34; &amp;gt; opencv4.</description></item></channel></rss>
