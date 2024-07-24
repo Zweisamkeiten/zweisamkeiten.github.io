@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zweisamkeiten.github.io/sitemap.xml
